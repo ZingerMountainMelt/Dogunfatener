@@ -14,6 +14,7 @@ DFRobotDFPlayerMini myDFPlayer;
 
 int randNumber1 = 0;
 int randNumber2 = 0;
+int speakerVolume = 25;
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
  
@@ -29,7 +30,7 @@ void setup()
   Serial.println();
   DFplayer.begin(9600);
   myDFPlayer.begin(DFplayer);
-  myDFPlayer.volume(25);
+  myDFPlayer.volume(speakerVolume);
 
 }
 
@@ -64,7 +65,7 @@ void loop()
   Serial.print("Message : ");
   content.toUpperCase();
   
-  if (content.substring(1) == "1A 08 93 7F") //change here the UID of the card/cards that you want to give access
+  if (content.substring(1) == "1A 08 93 7F")
   {
     Serial.println("Oakley");
     randNumber1 = random(1,5);
