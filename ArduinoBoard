@@ -67,7 +67,7 @@ void loop()
   Serial.print("Message : ");
   content.toUpperCase();
   
-  if (content.substring(1) == "1A 08 93 7F") //change here the UID of the card/cards that you want to give access
+  if (content.substring(1) == "1A 08 93 7F")
   {
     Serial.println("Oakley");
     randNumber1 = random(1,3);
