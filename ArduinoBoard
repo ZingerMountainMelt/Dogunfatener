@@ -16,8 +16,8 @@ DFRobotDFPlayerMini myDFPlayer;
 
 int randNumberO = 0;         //Used to randomize Oakley's mp3 files
 int randNumberC = 0;         //Used to randomize Chaplin's mp3 files
-int unknownMP3 = 7;          //Used to play mp3 file associated w/ unidentified tag
-int chaplinVolume = 30;
+int unknownMP3 = 3;          //Used to play mp3 file associated w/ unidentified tag (became file 3 from 7?)
+int chaplinVolume = 25;
 int oakleyVolume = 15;
 int unknownVolume = 20;
  
@@ -42,6 +42,9 @@ void loop()
   digitalWrite(LED_Y, HIGH);
   digitalWrite(LED_G, LOW);
   digitalWrite(LED_R, LOW);
+
+  randNumberO = 0;
+  randNumberC = 0;
   
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
@@ -72,7 +75,7 @@ void loop()
   {
     Serial.println("Oakley");
     myDFPlayer.volume(oakleyVolume);       //Set volume low for Oakley to 
-    randNumberO = random(1,3);             //set to randomize MP3 files
+    randNumberO = random(1,3);             //set to randomize MP3 files (maximum exclusive) Files 1-2 not corrupt for Oakley
     Serial.print("Random Number: ");       //Display randomized number
     Serial.println(randNumberO);
     myDFPlayer.play(randNumberO);          //play randomized mp3 file
@@ -87,7 +90,7 @@ void loop()
   {
     Serial.println("Chaplin");
     myDFPlayer.volume(chaplinVolume);      //Set volume high for Chaplin to alert me and scare him slightly
-    randNumberC = random(4,6);             //set to randomize MP3 files
+    randNumberC = random(4,7);             //set to randomize MP3 files. Files 4-6 chaplin designated
     Serial.print("Random Number: ");       //Display randomized number
     Serial.println(randNumberC);
     myDFPlayer.play(randNumberC);          //play randomized mp3 file
