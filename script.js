@@ -29,12 +29,50 @@ async function classifyImage() {
     }
 }
 
+function sendEmailO(){
+        Email.send({
+          SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
+          From: "dogdetectoriwd@gmail.com",
+          To: 'xidaltonx@gmail.com',
+          Subject: "Oakley be eatin",
+          Body: "bruh",
+          Attachments : [
+	          {
+		          name : "dog.png",
+		          path : "https://drive.google.com/file/d/13tEtfc8Um83EBNY0vV2NX0G43i2pJPDO/view?usp=sharing"
+	          }]
+        })
+          .then(function (message) {
+            alert("success")
+        });
+}
+      
+function sendEmailC(){
+        Email.send({
+          SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
+          From: "dogdetectoriwd@gmail.com",
+          To: 'xidaltonx@gmail.com',
+          Subject: "CHAPLIN",
+          Body: "Go get him",
+          Attachments : [
+	          {
+		          name : "dog.png",
+		          path : "https://drive.google.com/file/d/13tEtfc8Um83EBNY0vV2NX0G43i2pJPDO/view?usp=sharing"
+	          }]
+        })
+          .then(function (message) {
+            alert("success")
+        });
+}
+
 function oakley(result){
   response.innerText = "Good girl! :)";
+  sendEmailO();
 }
 
 function chaplin() {
   response.innerText = "Bad boy! >:(";
+  sendEmailC();
 }
 
 function nothing() {
