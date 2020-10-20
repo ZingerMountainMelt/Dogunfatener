@@ -1,27 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Seefood</title>
+    <title>Dogdetector</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js" defer></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link rel="stylesheet" href="/style.css" />
     <script src="/script.js" defer></script>
+    
+    <script type="text/javascript">
+      function sendEmail(){
+        Email.send({
+          Host: "smtp.gmail.com",
+          Username: "dogdetectoriwd@gmail.com",
+          Password: "(Hrduhxtxr134)",
+          From: "dogdetectoriwd@gmail.com",
+          To: 'xidaltonx@gmail.com',
+          Subject: "bruh",
+          Body: "bruh"
+        })
+          .then(function (message) {
+            alert("success")
+        });
+      }
+    </script>
+    
   </head>
-  <body>
+    <body>
     <div class="logo">
-      <h1>SeeFood</h1>
+      <h1>Dog Detector</h1>
     </div>
 
     <div class="tagline">
-      <h3>“The Shazam for Food”</h3>
+      <h3>“The Shazam for Dogs”</h3>
     </div>
+      
+    <table>
+      <tr>
+        <td>
+          Subject:
+        </td>
+        <td>
+          <input type="text" id="mailSubject" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Body:
+        </td>
+        <td>
+          <input type="text" id="mailBody" />
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="button" onclick="sendEmail();" value="send the mail" />
+        </td>
+      </tr>
+    </table>
 
-    <img class="image" src="https://cdn.glitch.com/b89497a0-705f-4f4c-b06c-b60d2a67493e%2Fhotdog.jpg" />
+    <img class="image" src="https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg" />
 
     <div class="result">
-      <h2>Let's Get Started</h2>
+      <h2>Pick a dog</h2>
+    </div>
+    
+    <div class="response">
+      <h4>whoms't be comin?</h4>
     </div>
 
     <div class="capture">
@@ -33,6 +81,6 @@
         onchange="handleUpload(this.files)"
       />
     </div>
-    <h3 class="text-stroke">Touch to SEEFOOD</h3>
+    <h3 class="text-stroke">Upload dog</h3>
   </body>
 </html>
