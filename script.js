@@ -35,15 +35,12 @@ function sendEmailO(){
           From: "dogdetectoriwd@gmail.com",
           To: 'xidaltonx@gmail.com',
           Subject: "Oakley be eatin",
-          Body: "bruh",
+          Body: "Goooooood girlllllll",
           Attachments : [
 	          {
-		          name : "dog.png",
+		          name : "Oakley.png",
 		          path : "https://drive.google.com/file/d/13tEtfc8Um83EBNY0vV2NX0G43i2pJPDO/view?usp=sharing"
 	          }]
-        })
-          .then(function (message) {
-            alert("success")
         });
 }
       
@@ -56,12 +53,9 @@ function sendEmailC(){
           Body: "Go get him",
           Attachments : [
 	          {
-		          name : "dog.png",
+		          name : "Chaplin.png",
 		          path : "https://drive.google.com/file/d/13tEtfc8Um83EBNY0vV2NX0G43i2pJPDO/view?usp=sharing"
 	          }]
-        })
-          .then(function (message) {
-            alert("success")
         });
 }
 
