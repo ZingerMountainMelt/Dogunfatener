@@ -13,9 +13,10 @@
     <script type="text/javascript">
       function sendEmail(){
         Email.send({
-          Host: "smtp.gmail.com",
-          Username: "dogdetectoriwd@gmail.com",
-          Password: "(Hrduhxtxr134)",
+          //Host: "smtp.gmail.com",
+          //Username: "dogdetectoriwd@gmail.com",
+          //Password: "(Hrduhxtxr134)",
+          SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
           From: "dogdetectoriwd@gmail.com",
           To: 'xidaltonx@gmail.com',
           Subject: "bruh",
@@ -39,28 +40,13 @@
       
     <table>
       <tr>
-        <td>
-          Subject:
-        </td>
-        <td>
-          <input type="text" id="mailSubject" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Body:
-        </td>
-        <td>
-          <input type="text" id="mailBody" />
-        </td>
-      </tr>
-      <tr>
         <td></td>
         <td>
           <input type="button" onclick="sendEmail();" value="send the mail" />
         </td>
       </tr>
     </table>
+
 
     <img class="image" src="https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg" />
 
