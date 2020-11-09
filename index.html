@@ -11,32 +11,51 @@
     <script src="/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script>
+      function timedRefresh(timeoutPeriod) {
+	      setTimeout("location.reload(true);",timeoutPeriod);
+      }
+      //window.onload = timedRefresh(100000);
+    </script>
+    
     
   </head>
     <body>
-    <div class="container">
+    <!--<div class="container">
       <canvas id="myChart"></canvas>
-    </div>
+    </div>-->
+    
+    <p>
+      url: <span id="url"></span>
+    </p>
       
     <div class="logo">
       <h1>Dog Detector</h1>
     </div>
 
-    <div class="tagline">
+    <!--<div class="tagline">
       <h3>“The Shazam for Dogs”</h3>
-    </div>
+    </div>-->
 
     <img class="image" src="https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg" />
+      
+    <div class="output"></div>
+      <!--<div class="modal1">-->
+        <!--<div class="modal-content">-->
+          <!--<span class="close">&times;</span>-->
+          <img class="modal-body">
+        <!--</div>
+      </div>-->
 
     <div class="result">
       <h2>Pick a dog</h2>
     </div>
     
     <div class="response">
-      <h4>whoms't be comin?</h4>
+      <h4>whoms't be eatin?</h4>
     </div>
 
-    <div class="capture">
+    <!--<div class="capture">
       <div class="record" />
       <input
         class="input"
@@ -45,6 +64,6 @@
         onchange="handleUpload(this.files)"
       />
     </div>
-    <h3 class="text-stroke">Upload dog</h3>
+    <h3 class="text-stroke">Upload dog</h3>-->
   </body>
 </html>
