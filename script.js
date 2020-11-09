@@ -1,10 +1,12 @@
 const api_url = "https://script.google.com/macros/s/AKfycbzehsYi8UZ0p-GPvrbS9IDaMq4Z4JAaGc44nEDYbMa3b1nsIFOG/exec";
 const animg = "https://drive.google.com/uc?id=1B_X5ik7PwJbenk8MZo958ca4INq0VG8d";
+//download file to object
+//jquery and json node & express
 
 //"https://teachablemachine.withgoogle.com/models/x7j9-fYZd/model.json"
 
 const { ml5 } = window;
-const classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/ut9iDYy31/model.json", console.log);
+const classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/-JrVsmzr/model.json", console.log);
 
 const result = document.querySelector(".result h2");
 const image = document.querySelector(".image");
@@ -12,6 +14,8 @@ const response = document.querySelector(".response h4");
 
 window.addEventListener('DOMContentLoaded', addImages)
 const output = document.querySelector('.output');
+
+var GV_image1_url = null;
 
 function addImages(){
   fetch(api_url).then(function(rep) {
@@ -23,27 +27,37 @@ function addImages(){
       console.log(url);
       console.log(id);
       console.log(file_name);
-      let imgURL = url;
-      console.log(imgURL);
-      document.getElementById('url').textContent = url;
+      GV_image1_url = url;
+      console.log(GV_image1_url);
+      document.getElementById('image1').src = URL.createObjectURL(url);
+      //document.getElementById('image1').src = url;
       
-      let img = document.createElement('img');
-      img.setAttribute('src',val.url);
-      output.appendChild(img);
-      console.log(img);
+      document.getElementById('spanImage1_url').innerText = url;
+      //let img = document.createElement('img');
+      //img.setAttribute('src',val.url);
+      //output.appendChild(img);
+      //console.log(img);
       
+      classifyImage(url);
       //classifyImage("https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg");
     })
   })
 }
 
+function showImage1url() {
+  alert(GV_image1_url);
+}
+
+console.log(GV_image1_url);
+
 console.log("Pre-Classifier");
 
-async function classifyImage() {
+async function classifyImage(image1) {
+  const image = document.querySelector(".image");
   const results = await classifier.classify(image);
   result.innerText = results[0].label;
   console.log("Classification Start");
-  
+    alert();
     if (result.innerText == "Chaplin") {
       chaplin();
     }
@@ -63,7 +77,7 @@ async function classifyImage() {
 
 function sendEmailO(){
         console.log("Oakley Email Start");
-        console.log(animg);
+        console.log();
   
         Email.send({
           SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
@@ -81,7 +95,7 @@ function sendEmailO(){
       
 function sendEmailC(){
         console.log("Chaplin Email Start");
-        console.log(animg);
+        console.log();
   
         Email.send({
           SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
@@ -114,7 +128,7 @@ function nothing() {
   response.innerText = "Must've been the wind...";
 }
 
-function handleUpload(files) {
-  image.src = "https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg";
-  setTimeout(classifyImage, 50);
-}
+//function handleUpload(files) {
+  //image.src = "https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg";
+  //setTimeout(classifyImage, 50);
+//}
