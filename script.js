@@ -38,7 +38,7 @@ function addImages(){
       //output.appendChild(img);
       //console.log(img);
       
-      classifyImage(url);
+      //classifyImage(url);
       //classifyImage("https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg");
     })
   })
@@ -52,9 +52,9 @@ console.log(GV_image1_url);
 
 console.log("Pre-Classifier");
 
-async function classifyImage(image1) {
+async function classifyImage() {
   const image = document.querySelector(".image");
-  const results = await classifier.classify(image);
+  const results = await classifier.classify();
   result.innerText = results[0].label;
   console.log("Classification Start");
     alert();
@@ -88,14 +88,14 @@ function sendEmailO(){
           Attachments : [
 	          {
 		          name : "Oakley.jpg",
-		          path : animg
+		          path : GV_image1_url
 	          }]
         });
 }
       
 function sendEmailC(){
         console.log("Chaplin Email Start");
-        console.log();
+        console.log(GV_image1_url);
   
         Email.send({
           SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
@@ -127,6 +127,8 @@ function nothing() {
   console.log("Nothing");
   response.innerText = "Must've been the wind...";
 }
+
+//setTimeout(() => {  chaplin(); }, 10000);
 
 //function handleUpload(files) {
   //image.src = "https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg";
