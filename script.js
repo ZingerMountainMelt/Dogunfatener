@@ -6,7 +6,7 @@ const animg = "https://drive.google.com/uc?id=1B_X5ik7PwJbenk8MZo958ca4INq0VG8d"
 //"https://teachablemachine.withgoogle.com/models/x7j9-fYZd/model.json"
 
 const { ml5 } = window;
-const classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/-JrVsmzr/model.json", console.log);
+const classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/x7j9-fYZd/model.json", console.log);
 
 const result = document.querySelector(".result h2");
 const image = document.querySelector(".image");
@@ -77,7 +77,7 @@ async function classifyImage() {
 
 function sendEmailO(){
         console.log("Oakley Email Start");
-        console.log();
+        console.log(GV_image1_url);
   
         Email.send({
           SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
@@ -106,7 +106,7 @@ function sendEmailC(){
           Attachments : [
 	          {
 		          name : "Chaplin.jpg",
-		          path : animg
+		          path : GV_image1_url
 	          }]
         });
 }
@@ -128,7 +128,9 @@ function nothing() {
   response.innerText = "Must've been the wind...";
 }
 
-//setTimeout(() => {  chaplin(); }, 10000);
+setTimeout(() => {  classifyImage(GV_image1_url); }, 10000);
+
+setTimeout(() => {  chaplin(); }, 10000);
 
 //function handleUpload(files) {
   //image.src = "https://cdn.mos.cms.futurecdn.net/QjuZKXnkLQgsYsL98uhL9X.jpg";
