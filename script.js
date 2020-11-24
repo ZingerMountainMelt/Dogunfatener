@@ -1,18 +1,20 @@
+const api_url = "https://script.google.com/macros/s/AKfycbzehsYi8UZ0p-GPvrbS9IDaMq4Z4JAaGc44nEDYbMa3b1nsIFOG/exec";
+
 const { ml5 } = window;
-const classifier = ml5.imageClassifier(
-  "https://teachablemachine.withgoogle.com/models/x7j9-fYZd/model.json",
-  console.log
-);
+const classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/x7j9-fYZd/model.json", console.log);
 
-let arrO = [];
-let arrC = [];
-
-//var Email = require("https://smtpjs.com/v3/smtp.js");
 const result = document.querySelector(".result h2");
 const image = document.querySelector(".image");
 const response = document.querySelector(".response h4");
 
-//Chart data
+window.addEventListener('DOMContentLoaded', addImages)
+const output = document.querySelector('.output');
+
+var GV_image = null;
+
+let arrO = [];
+let arrC = [];
+
 const chaplinColor = 'blue';
 const oakleyColor = 'pink';
 
@@ -30,13 +32,16 @@ var cheese = 30;
 //Guaranteed intake (excluding oakley's dinner, which may be eaten by chaplin)
 var oakleyCalories = trueChew + 2 * pupperoni + 3 * biscuit + 4 * snausage + cheese;
 var chaplinCalories = wetFood + dryFood + trueChew + pupperoni + greenie + 2 * biscuit + smartBone + 3 * snausage + cheese;
-      
+
 const oakleyRecommended = 600;
 const chaplinRecommended = 850;
+
+//setTimeout(function(){ console.log(GV_image); }, 5000);
 
 async function classifyImage() {
   const results = await classifier.classify(image);
   result.innerText = results[0].label;
+  console.log("Classification Start");
   
     if (result.innerText == "Chaplin") {
       chaplin();
@@ -56,38 +61,69 @@ async function classifyImage() {
 }
 
 function sendEmailO(){
+        console.log("Oakley Email Start");
+        console.log(GV_image);
+  
         Email.send({
           SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
           From: "dogdetectoriwd@gmail.com",
           To: 'xidaltonx@gmail.com',
-          Subject: "Oakley be eatin",
-          Body: "Goooooood girlllllll",
+          Subject: "Oakley is eating her own food",
+          Body: "Goooooood girllllll",
           Attachments : [
 	          {
-		          name : "Oakley.png",
-		          path : "https://drive.google.com/uc?export=view&id=1v2vBJQvk3UkuR0GWXKnhpnGLUMHDYkpj"
+		          name : "Oakley.jpg",
+		          path : GV_image
 	          }]
         });
 }
       
 function sendEmailC(){
+        console.log("Chaplin Email Start");
+        console.log(GV_image);
+  
         Email.send({
           SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
           From: "dogdetectoriwd@gmail.com",
           To: 'xidaltonx@gmail.com',
-          Subject: "CHAPLIN",
-          Body: "Go get him",
+          Subject: "CHAPLIN IS EATING OAKLEY'S FOOD",
+          Body: "Go stop him",
           Attachments : [
 	          {
-		          name : "Chaplin.png",
-		          path : "https://drive.google.com/uc?export=view&id=1v2vBJQvk3UkuR0GWXKnhpnGLUMHDYkpj"
+		          name : "Chaplin.jpg",
+		          path : GV_image
 	          }]
         });
 }
 
+function sendEmailN(){
+        console.log("Neutral Email Start");
+        console.log(GV_image);
+  
+        Email.send({
+          SecureToken: "8e5f49d9-d5f7-4c8c-a4ba-f491fd062ae9",
+          From: "dogdetectoriwd@gmail.com",
+          To: 'xidaltonx@gmail.com',
+          Subject: "Movement Detected",
+          Body: "Check for dog",
+          Attachments : [
+	          {
+		          name : "Dog?.jpg",
+		          path : GV_image
+	          }]
+        });
+}
+
+function newImage(){
+  console.log("New Image Function Start");
+  alert("A new image has appeared");
+  sendEmailN();
+}
+
 function oakley(){
+  console.log("Oakley!");
   response.innerText = "Good girl! :)";
-  //sendEmailO();
+  sendEmailO();
   arrO.push(wetFood);
   arrC.push(0);
   if (arrO.length == 8){
@@ -99,8 +135,9 @@ function oakley(){
 }
 
 function chaplin() {
+  console.log("Chaplin!");
   response.innerText = "Bad boy! >:(";
-  //sendEmailC();
+  sendEmailC();
   arrC.push(wetFood);
   arrO.push(0);
   if (arrC.length == 8){
@@ -112,12 +149,17 @@ function chaplin() {
 }
 
 function nothing() {
+  console.log("Nothing");
   response.innerText = "Must've been the wind...";
 }
 
 function handleUpload(files) {
   image.src = URL.createObjectURL(files[0]);
   setTimeout(classifyImage, 50);
+}
+
+for (var i=0; i<1000; i++) {
+  setTimeout(addImages, 50000);  //Each iteration should wait 50000 milliseconds, not for the start of the loop
 }
 
 if (arrC.length > 0){
@@ -212,7 +254,7 @@ let myChart = document.getElementById('myChart').getContext('2d');
 let calChart = new Chart(myChart, {
       type:'horizontalBar',
       data:{
-        labels:['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        labels:['1', '2', '3', '4', '5', '6', '7'],
         datasets:[{
           label: 'Chaplin',
           backgroundColor: chaplinColor,
@@ -273,3 +315,25 @@ let calChart = new Chart(myChart, {
         }
       }
 });
+
+function addImages(){
+  fetch(api_url).then(function(rep) {
+    return rep.json()
+  }).then(function(json){
+    console.log(json);
+    json.data.forEach(function(val) {
+      const { id, url, file_name } = val;
+      console.log(url);
+      console.log(id);
+      console.log(file_name);
+       if (GV_image != null && url != GV_image) {
+        console.log("url mismatch");
+        newImage();
+      }
+      GV_image = url;
+      console.log(GV_image);
+      document.getElementById('driveImage').src = url;
+      document.getElementById('id').textContent = id;
+    })
+  })
+}
