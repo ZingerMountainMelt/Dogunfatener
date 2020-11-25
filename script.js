@@ -1,3 +1,5 @@
+var audio = new Audio("https://cdn.glitch.com/1345cd42-54e5-4f37-9d96-f25cefec9ffa%2Falert.mp3?v=1606254397619");
+
 const api_url = "https://script.google.com/macros/s/AKfycbzehsYi8UZ0p-GPvrbS9IDaMq4Z4JAaGc44nEDYbMa3b1nsIFOG/exec";
 
 const {ml5} = window;
@@ -120,6 +122,7 @@ function sendEmailN() {
 function newImage() {
     console.log("New Image Function Start");
     alert("A new image has appeared");
+    audio.play();
     sendEmailN();
 }
 
@@ -128,10 +131,10 @@ function oakley() {
     response.innerText = "Good girl! :)";
     // sendEmailO();
     arrO.push(wetFood);
-    calChart.data.datasets[1].data[2] = 800;
+    //calChart.data.datasets[1].data[2] = 800;
     //alert(calChart.data.datasets[1].data[2]);
 
-    oneO = wetFood;
+    //oneO = wetFood;
 
     calChart = makeChart();
     arrC.push(0);
@@ -158,6 +161,9 @@ function updateObject(idx)
     dataObj[idx].data[day] = dataObj[idx].data[day] + wetFood;
     dataObj[idx].day = dataObj[idx].day + 1;
     DAY_INDEX++;
+    if (DAY_INDEX >= 7) {
+      DAY_INDEX = 0;
+    }
     calChart = makeChart(dataObj);
 }
 function chaplin() {
@@ -241,6 +247,7 @@ function makeChart(dataObj)
         }
     });
 }
+
 function addImages() {
     fetch(api_url).then(function (rep) {
         return rep.json()
