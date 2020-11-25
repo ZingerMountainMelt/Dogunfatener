@@ -1,0 +1,25 @@
+function setView(){
+  var folderId = "1-hIyIohUAB1C-x_AHmAJs25-g_Yi50fV";
+  var files = DriveApp.getFolderById(folderId).getFiles();
+  var result;
+  
+    var file = files.next();
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+    var temp = {
+      file_name : file.getName(),
+      url : "https://drive.google.com/uc?id=" + file.getId(),
+      id : file.getId()
+    };
+    result.push(temp);
+ 
+  Logger.log(result);
+  return result;
+}
+
+function doGet() {
+  var output = JSON.stringify({
+    status : 'Success',
+    data : setView()
+  });
+  return ContentService.createTextOutput(output).setMimeType(ContentService.MimeType.JSON)
+}
