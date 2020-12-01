@@ -3,13 +3,62 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: gray;
+  background: azure;
 }
 
-h1,
-h2,
+h1 {
+  
+}
+
+h2 {
+  
+}
+
 h3 {
   margin-top: 0px;
+  text-align: center;
+  font-size: 15px;
+}
+
+h5 {
+  font-size: 15px;
+  font-size: 0.75vw;
+  text-align: center;
+}
+
+h6 {
+  font-size: 10px;
+  font-size: 0.5vw;
+  text-align: center;
+}
+
+h7 {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+.chart-container {
+  margin: 0 auto;
+}
+
+figcaption {
+  font-style: normal;
+  display: block;
+  font-size: 0.8em;
+  padding-top: 0;
+  position: relative;
+  text-align: center;
+  bottom: 1em;
+  left: 0;
+  transform: translateY(100%);
 }
 
 .tagline {
@@ -18,20 +67,18 @@ h3 {
   background: #FFFFFF;
   border: 3px solid #000000;
   box-sizing: border-box;
-
   font-style: normal;
   font-weight: bold;
   line-height: 68px;
   font-size: 26px;
   text-align: center;
-
   color: #D60000;
 }
 
 .logo {
   width: 100%;
   height: 110px;
-  background: #D60000;
+  background: ivory;
 }
 
 .logo h1 {
@@ -42,7 +89,7 @@ h3 {
   font-size: 64px;
   text-align: center;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: LightCyan;
   -webkit-text-stroke: 3px black;
   text-stroke: 3px black;
 }
@@ -67,7 +114,6 @@ h3 {
 
 .capture {
   z-index: 1000;
-  position: absolute;
   bottom: 0px;
   width: 100%;
   display: flex;
@@ -83,12 +129,11 @@ h3 {
   height: 70px;
   border-radius: 100%;
   border: 5px solid black;
-  background: red;
+  background: lightblue;
   margin-bottom: 20px;
 }
 
 .input {
-  position: absolute;
   opacity: 0;
   bottom: 0px;
   left: 0px;
@@ -98,17 +143,26 @@ h3 {
 
 .image {
   display: block;
-  width: auto;
+  width: 100%;
   height: 50vh;
   border: 4px solid black;
   margin: 20px auto;
 }
 
-@media only screen and (max-width: 600px) {
+.image1 {
+  display: block;
+  width: 75%;
+  height: 50vh;
+  border: 4px solid black;
+  margin: 1px auto;
+  bottom: 0px;
+}
+
+@media only screen and (max-width: 900px) {
   .logo {
     width: 100%;
     height: 70px;
-    background: #D60000;
+    background: ivory;
   }
 
   .logo h1 {
