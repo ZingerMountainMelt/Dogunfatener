@@ -17,7 +17,7 @@ var GV_image = null;
 let arrO = [];
 let arrC = [];
 
-const chaplinColor = 'blue';
+const chaplinColor = 'lightblue';
 const oakleyColor = 'pink';
 
 //Caloric data for food
@@ -37,10 +37,12 @@ var chaplinCalories = wetFood + dryFood + trueChew + pupperoni + greenie + 2 * b
 
 const oakleyRecommended = 600;
 const chaplinRecommended = 850;
+
 let dataObj = [
     {label: "Chaplin", day: 0, data: [chaplinCalories, chaplinCalories, chaplinCalories, chaplinCalories, chaplinCalories, chaplinCalories, chaplinCalories]},
     {label: "Oakley", day: 0, data: [oakleyCalories, oakleyCalories, oakleyCalories, oakleyCalories, oakleyCalories, oakleyCalories, oakleyCalories]}
 ]
+
 //setTimeout(function(){ console.log(GV_image); }, 5000);
 let calChart = null;
 console.log("Pre-Classifier");
@@ -49,7 +51,6 @@ async function classifyImage() {
     const results = await classifier.classify(image);
     result.innerText = results[0].label;
     console.log("Classification Start");
-
 
     if (result.innerText == "Chaplin") {
         updateObject(0);
@@ -128,13 +129,9 @@ function newImage() {
 
 function oakley() {
     console.log("Oakley!");
-    response.innerText = "Good girl! :)";
-    // sendEmailO();
+    response.innerText = "Good girl! 😊";
+    sendEmailO();
     arrO.push(wetFood);
-    //calChart.data.datasets[1].data[2] = 800;
-    //alert(calChart.data.datasets[1].data[2]);
-
-    //oneO = wetFood;
 
     calChart = makeChart();
     arrC.push(0);
@@ -145,30 +142,10 @@ function oakley() {
         arrC.shift();
     }
 }
-let lastObjectIdx = 0;
-function eatAgain()
-{
-    lastObjectIdx = prompt("Which Dog: ");
-    updateObject(lastObjectIdx);
-}
-let DAY_INDEX = 0;
-function updateObject(idx)
-{
-    lastObjectIdx = idx;
-    console.log(dataObj[idx].label);
-    const day = DAY_INDEX;//dataObj[idx].day;
-    //alert(dataObj[idx].label);
-    dataObj[idx].data[day] = dataObj[idx].data[day] + wetFood;
-    dataObj[idx].day = dataObj[idx].day + 1;
-    DAY_INDEX++;
-    if (DAY_INDEX >= 7) {
-      DAY_INDEX = 0;
-    }
-    calChart = makeChart(dataObj);
-}
+
 function chaplin() {
     console.log("Chaplin!");
-    response.innerText = "Bad boy! >:(";
+    response.innerText = "Bad boy! 😡";
     sendEmailC();
     arrC.push(wetFood);
     arrO.push(0);
@@ -185,6 +162,31 @@ function nothing() {
     response.innerText = "Must've been the wind...";
 }
 
+let lastObjectIdx = 0;
+
+function eatAgain()
+{
+    lastObjectIdx = prompt("Which Dog: ");
+    updateObject(lastObjectIdx);
+}
+
+let DAY_INDEX = 0;
+
+function updateObject(idx)
+{
+    lastObjectIdx = idx;
+    console.log(dataObj[idx].label);
+    const day = DAY_INDEX;//dataObj[idx].day;
+    //alert(dataObj[idx].label);
+    dataObj[idx].data[day] = dataObj[idx].data[day] + wetFood;
+    dataObj[idx].day = dataObj[idx].day + 1;
+    DAY_INDEX++;
+    if (DAY_INDEX >= 7) {
+      DAY_INDEX = 0;
+    }
+    calChart = makeChart(dataObj);
+}
+
 function handleUpload(files) {
     image.src = URL.createObjectURL(files[0]);
     setTimeout(classifyImage, 50);
@@ -195,13 +197,14 @@ for (var i = 0; i < 1000; i++) {
 }
 
 calChart = makeChart(dataObj);
+
 function makeChart(dataObj)
 {
     let myChart = document.getElementById('myChart').getContext('2d');
     return new Chart(myChart, {
         type: 'horizontalBar',
         data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7'],
+            labels: ['M', 'T', 'W', 'Th', 'F', 'S', 'Su'],
             datasets: [{
                     label: dataObj[0].label,
                     backgroundColor: chaplinColor,
@@ -223,8 +226,8 @@ function makeChart(dataObj)
         options: {
             title: {
                 display: true,
-                text: 'Dog Calorie Tracker',
-                fontSize: 25
+                text: 'Calories',
+                fontSize: 15
             },
             legend: {
                 display: true,
@@ -235,7 +238,7 @@ function makeChart(dataObj)
             },
             layout: {
                 padding: {
-                    left: 50,
+                    left: 5,
                     right: 0,
                     bottom: 0,
                     top: 0
@@ -259,12 +262,13 @@ function addImages() {
             console.log(id);
             console.log(file_name);
             if (GV_image != null && url != GV_image) {
-                console.log("url mismatch");
+                console.log("URL mismatch");
                 newImage();
             }
             GV_image = url;
             console.log(GV_image);
             document.getElementById('driveImage').src = url;
+            document.getElementById('driveImage').textContent = url;
             document.getElementById('id').textContent = id;
         })
     })
