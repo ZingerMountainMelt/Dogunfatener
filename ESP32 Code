@@ -1,8 +1,8 @@
 const char* ssid     = "*%&%^%$**&)_*(&^";
 const char* password = "%$@$#@#@&%^%(*&8";
 
-String myScript = "/macros/s/AKfycbwSredyUp2BIZq9OugxJPebGW5D7CcvcyxLsPoDLbvyrc6XMvg/exec";    //Create your Google Apps Script and replace the "myScript" path https://script.google.com/macros/s/AKfycbzR5HRPNSnAI3g2pL4zPd9jLsAGigPiFVAStxd3WmlgL7Dc4ps/exec
-String myDeleteScript = "/macros/s/AKfycbyd5sPyRHXeLh5rurNOlyy1k7t67h_RB8fRbvTGrZzq4YmTR8Sm/exec";
+String myScript = "/macros/s/AKfycbwSredyUp2BIZq9OugxJPebGW5D7CcvcyxLsPoDLbvyrc6XMvg/exec"; //for uploading
+String myDeleteScript = "/macros/s/AKfycbyd5sPyRHXeLh5rurNOlyy1k7t67h_RB8fRbvTGrZzq4YmTR8Sm/exec"; //for clearing previous drive image entries
 String myFoldername = "&myFoldername=ESP32-CAM";
 String myFilename = "&myFilename=ESP32-CAM.jpg";
 String myImage = "&myFile=";
